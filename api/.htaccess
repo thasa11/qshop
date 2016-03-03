@@ -1,0 +1,9 @@
+<Limit GET POST PUT DELETE>
+Allow from all
+</Limit>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ qvantel/index.php?request=$1 [QSA,NC,L]
