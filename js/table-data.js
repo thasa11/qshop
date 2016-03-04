@@ -28,7 +28,7 @@ function getCatalogData(command,startID,limit,filter,DBPage,vm, selectrow) {
     // Remove highlight classes
     setRowData(1);
     $.ajax({
-            type: "POST",
+            type: "GET",
             url: "api/load.php"+'?qshopCallback=?',
             dataType: "jsonp",
             async: true,
@@ -80,7 +80,7 @@ function getBasketData(command,startID,limit,filter,DBPage,vmbasket, selectrow) 
     // Remove highlight classes
     setRowDataBasket(1);
     $.ajax({
-            type: "POST",
+            type: "GET",
             url: "api/loadcart.php"+'?qshopCallback=?',
             dataType: "jsonp",
             async: true,

@@ -1,4 +1,9 @@
 <?php
+        /**
+         * function remove
+         * Removes product from product catalog, and updates stock amounts accordingly.
+         * Removes product from all users shopping cart.
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -6,7 +11,7 @@
         $myArray = array();
         
         // 1 Get parameters
-        $id = $_POST['productid'];
+        $id = $_REQUEST['productid'];
                 
         // 2 Remove product
                 

@@ -1,4 +1,9 @@
 <?php
+        /**
+         * function new
+         * Creates new product in the product catalog.
+         * Updates stock amounts. 
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -6,10 +11,10 @@
         $myArray = array();
         
         // 1 Get parameters
-        $descr = $_POST['descr'];
-        $price = $_POST['price'];
-        $name = $_POST['name'];
-        $amount = $_POST['amount'];
+        $descr = $_REQUEST['descr'];
+        $price = $_REQUEST['price'];
+        $name = $_REQUEST['name'];
+        $amount = $_REQUEST['amount'];
         $reserved = 0;
         
         // 2 Insert product

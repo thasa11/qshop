@@ -131,7 +131,7 @@ class QShopAPI extends API
      * Example of an Endpoint
      */
      protected function load() {
-        if ($this->method == 'POST') {
+        if ($this->method == 'GET') {
             require_once 'load.php';
         } else {
             return "Only accepts GET requests";

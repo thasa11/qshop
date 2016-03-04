@@ -1,4 +1,9 @@
 <?php
+        /**
+         * function removecart
+         * Removes product from users shopping cart.
+         * Releases reserved amount back to stock.
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -7,7 +12,7 @@
         $count = 0;
         
         // 1 Get parameters
-        $id = $_POST['productid'];
+        $id = $_REQUEST['productid'];
                 
         // 2 Remove product from cart
                 

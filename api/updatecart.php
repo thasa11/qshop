@@ -1,4 +1,9 @@
 <?php
+        /**
+         * updatecart
+         * Updates users cart with new amount of product.
+         * Updates stock reserved status with new reserved amount.
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -6,8 +11,8 @@
         $myArray = array();
         
         // 1 Get parameters
-        $newcount = $_POST['amount'];
-        $id = $_POST['productid'];
+        $newcount = $_REQUEST['amount'];
+        $id = $_REQUEST['productid'];
         $userid = 0;
         $count = 0;
 

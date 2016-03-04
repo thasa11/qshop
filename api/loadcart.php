@@ -1,4 +1,9 @@
 <?php
+        /**
+         * function loadcart
+         * Query shopping cart with given filters, page and search string.
+         * Returns search result grouped by given pricegroups. 
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -12,9 +17,9 @@
         $grouptot = array();
         
         // 1 Generate pricegroups
-        $pricegroups = $_POST['pricegroups'];
-        $price = $_POST['price'];
-        $search = $_POST['search'];
+        $pricegroups = $_REQUEST['pricegroups'];
+        $price = $_REQUEST['price'];
+        $search = $_REQUEST['search'];
         if ($price =="%") $price = " LIKE '%'";
         $casestruct="";
         if (is_array($pricegroups)){
@@ -53,7 +58,7 @@
         ".($casestruct?" , case ".$casestruct." end as pricerange":"")."
         from basket left join products on basket.pid = products.id
         left join stock on products.id = stock.productid
-        WHERE price ".$price." AND name LIKE '".$search."%' and purchased='N' LIMIT ".$_POST['start'].",".$_POST['limit'].") tbl
+        WHERE price ".$price." AND name LIKE '".$search."%' and purchased='N' LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit'].") tbl
         group by pricerange, tbl.id
         order by price asc
         ;";
@@ -69,7 +74,7 @@
         WHERE price ".$price." AND (name LIKE '".$search."%' OR descr LIKE '%".$search."%') and purchased='N'
         group by pricerange, tbl.id
         order by price asc
-        LIMIT ".$_POST['start'].",".$_POST['limit']."
+        LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit']."
         ;")) {
         
         // 4 Fetch product rows and merge grouptotals

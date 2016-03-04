@@ -1,4 +1,9 @@
 <?php
+        /**
+         * function load
+         * Query product catalog with given filters, page and search string.
+         * Returns search result grouped by given pricegroups. 
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -11,9 +16,9 @@
         $grouptot = array();
         
         // 1 Generate pricegroups
-        $pricegroups = $_POST['pricegroups'];
-        $price = $_POST['price'];
-        $search = $_POST['search'];
+        $pricegroups = $_REQUEST['pricegroups'];
+        $price = $_REQUEST['price'];
+        $search = $_REQUEST['search'];
         if ($price =="%") $price = " LIKE '%'";
         $casestruct="";
         if (is_array($pricegroups)){
@@ -50,7 +55,7 @@
         SELECT *, count(*) AS grouptotal FROM ( select *
         ".($casestruct?" , case ".$casestruct." end as pricerange":"")."
         from products left join stock on products.id = stock.productid
-        WHERE price ".$price." AND name LIKE '".$search."%' LIMIT ".$_POST['start'].",".$_POST['limit'].") tbl
+        WHERE price ".$price." AND name LIKE '".$search."%' LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit'].") tbl
         group by pricerange, tbl.id
         order by price asc
         ;";
@@ -65,7 +70,7 @@
         WHERE price ".$price." AND (name LIKE '".$search."%' OR descr LIKE '%".$search."%')
         group by pricerange, tbl.id
         order by price asc
-        LIMIT ".$_POST['start'].",".$_POST['limit']."
+        LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit']."
         ;")) {
         
         // 4 Fetch product rows and merge grouptotals
@@ -84,7 +89,7 @@
         
         // 6 Json encode -- allow cross site script loading content
         header('Content-Type: application/json');
-        echo $_GET['qshopCallback'] . '(' . json_encode($myArray) . ')';
+        echo $_REQUEST['qshopCallback'] . '(' . json_encode($myArray) . ')';
     
         $result->close();
         $mysqli->close();

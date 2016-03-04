@@ -9,6 +9,7 @@ if(isset($_REQUEST['request'])){
         $API = new QShopAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN']);
         echo $API->processAPI();
 }
+// phpinfo();
 header('Content-Type: text/html');
 ?>
 <!DOCTYPE html>

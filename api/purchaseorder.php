@@ -1,4 +1,10 @@
 <?php
+        /**
+         * function purchaseorder
+         * Loops through products in users shopping basket, and decreases products
+         * amount in stock and releases reservation status in stock.
+         * Updates products status in users basket as purchased for further order processing. 
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -15,17 +21,17 @@
         
         // 1.1 Get filtering parameters
         
-        $start = $_POST['start'];
-        $price = $_POST['price'];
-        $limit = $_POST['limit'];
-        $search = $_POST['search'];
+        $start = $_REQUEST['start'];
+        $price = $_REQUEST['price'];
+        $limit = $_REQUEST['limit'];
+        $search = $_REQUEST['search'];
         if ($price =="%") $price = " LIKE '%'";        
                 
         // 2 Select products in cart to be purchased using filter
                 
         $query="select * FROM basket 
         left join products on basket.pid = products.id WHERE userid = $userid AND purchased='N'
-        AND price ".$price." AND (name LIKE '".$search."%' OR descr LIKE '".$search."%') and purchased='N' LIMIT ".$_POST['start'].",".$_POST['limit'].";";
+        AND price ".$price." AND (name LIKE '".$search."%' OR descr LIKE '".$search."%') and purchased='N' LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit'].";";
         
         $result=$mysqli->query($query);
         // echo $query."</br>";

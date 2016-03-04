@@ -1,4 +1,8 @@
 <?php
+        /**
+         * function addcart
+         * Adds product to users shopping cart.
+         */
         # connect to db and authenticate api
         include 'db/mysqli.connect.php';
         include 'db/authenticate_api.php';
@@ -8,8 +12,8 @@
         // TODO: Puuttuu user kentan kasittely, jolla voidaan hakea oman ostoskorin sisalto, nyt tukee vain 1 kayttajaa (usedid=0)
         
         // 1 Get parameters
-        $amount = $_POST['amount'];
-        $id = $_POST['productid'];
+        $amount = $_REQUEST['amount'];
+        $id = $_REQUEST['productid'];
         $userid = 0;
         $purchased = 'N';
         
