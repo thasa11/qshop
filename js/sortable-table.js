@@ -626,11 +626,12 @@ $(function () {
     
     // CATALOG FORM
     // Submit event handler for UPDATE
-    var $ajaxForm = $('#details-form');
-    $ajaxForm.on('click', function(event) {
+    var $detailsForm = $('#details-form');
+    var $basketForm = $('#basket-form');
+    $detailsForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="update") return false;
+        if (t!="update" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/update.php'+'?qshopCallback=?',
@@ -654,11 +655,10 @@ $(function () {
     });
     
     // Submit event handler for NEW
-    var $ajaxForm = $('#details-form');
-    $ajaxForm.on('click', function(event) {
+    $detailsForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="new") return false;
+        if (t!="new" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/new.php'+'?qshopCallback=?',
@@ -680,11 +680,10 @@ $(function () {
     });
 
     // Submit event handler for REMOVE
-    var $ajaxForm = $('#details-form');
-    $ajaxForm.on('click', function(event) {
+    $detailsForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="remove") return false;
+        if (t!="remove" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/remove.php'+'?qshopCallback=?',
@@ -708,11 +707,10 @@ $(function () {
     });
 
     // Submit event handler for ADD TO CART
-    var $ajaxForm = $('#details-form');
-    $ajaxForm.on('click', function(event) {
+    $detailsForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="addcart") return false;
+        if (t!="addcart" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/addcart.php'+'?qshopCallback=?',
@@ -737,11 +735,10 @@ $(function () {
 
     // BASKET FORM
     // Submit event handler for UPDATE
-    var $ajaxForm = $('#basket-form');
-    $ajaxForm.on('click', function(event) {
+    $basketForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="update") return false;
+        if (t!="update" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/updatecart.php'+'?qshopCallback=?',
@@ -765,11 +762,10 @@ $(function () {
     });
 
     // Submit event handler for REMOVE
-    var $ajaxForm = $('#basket-form');
-    $ajaxForm.on('click', function(event) {
+    $basketForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
-        if (t!="remove") return false;
+        if (t!="remove" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/removecart.php'+'?qshopCallback=?',
@@ -793,14 +789,13 @@ $(function () {
     });
 
     // Submit event handler for PURCHASE
-    var $ajaxForm = $('#basket-form');
-    $ajaxForm.on('click', function(event) {
+    $basketForm.on('click', function(event) {
         event.preventDefault();
         var t = event.target.id;
         var formval = $(this).serialize();
         var obj = {start : vmbasket.start(), limit : vmbasket.limit(), price : vmbasket.pricerange(), search : vmbasket.searchCat()};
         formval = formval+'&'+$.param(obj);
-        if (t!="purchase") return false;
+        if (t!="purchase" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
             url: 'api/purchaseorder.php'+'?qshopCallback=?',
@@ -822,4 +817,61 @@ $(function () {
             }
         });
     });
+    
+    // Catalog form validation
+    $detailsForm.validate({
+        rules: {
+           name: "required",
+           descr: "required",
+           price: {
+              required: true,
+              number: true
+           },
+           amount: {
+              required: true,
+              number: true
+           },
+           messages: {
+              name: "<span>Tuotenimi puuttuu!</span>",
+              descr: "<span>Tuotekuvaus puuttuu!</span>",
+              price: {
+                 required: "<span>Hinta puuttuu!</span>",
+                 number: "<span>Hinnan on oltava numeerinen!</span>"
+              },
+              amount: {
+                 required: "<span>Määrä puuttuu!</span>",
+                 number: "<span>Määrän on oltava numeerinen!</span>"
+              },
+          }
+        }
+    });
+
+    // Cart form validation
+    $basketForm.validate({
+        rules: {
+           name: "required",
+           descr: "required",
+           price: {
+              required: true,
+              number: true
+           },
+           amount: {
+              required: true,
+              number: true
+           },
+           messages: {
+              name: "<span>Tuotenimi puuttuu!</span>",
+              descr: "<span>Tuotekuvaus puuttuu!</span>",
+              price: {
+                 required: "<span>Hinta puuttuu!</span>",
+                 number: "<span>Hinnan on oltava numeerinen!</span>"
+              },
+              amount: {
+                 required: "<span>Tilattava määrä puuttuu!</span>",
+                 number: "<span>Tilattavan määrän on oltava numeerinen!</span>"
+              },
+           }
+        }
+    });
+
 });

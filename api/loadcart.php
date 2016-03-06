@@ -19,7 +19,7 @@
         // 1 Generate pricegroups
         $pricegroups = $_REQUEST['pricegroups'];
         $price = $_REQUEST['price'];
-        $search = $_REQUEST['search'];
+        $search = trim($_REQUEST['search']);
         if ($price =="%") $price = " LIKE '%'";
         $casestruct="";
         if (is_array($pricegroups)){

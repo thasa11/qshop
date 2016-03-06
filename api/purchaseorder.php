@@ -24,7 +24,7 @@
         $start = $_REQUEST['start'];
         $price = $_REQUEST['price'];
         $limit = $_REQUEST['limit'];
-        $search = $_REQUEST['search'];
+        $search = trim($_REQUEST['search']);
         if ($price =="%") $price = " LIKE '%'";        
                 
         // 2 Select products in cart to be purchased using filter
