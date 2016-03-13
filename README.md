@@ -21,11 +21,13 @@ The application has 2 responsive views, that also communicate with each other, e
 are updated.
 
 QSHop API customers are handed the API documentation which describes available resources, actions, and descriptors.
-API key is demanded in the cross-site server requests.
+API key is demanded in the cross-site server requests. API key can be tied to the domain name to make them as a pair.
 
-There is now an abstract API class that implements RESTful API, that uses appropriate HTTP methods.
+There is now an abstract API class that implements RESTful API using appropriate HTTP methods.
 CORS requests are allowed, and site using this API must have an API key tied to the domain name.
+API key must be present in all requests, and it is verified before any request processing. 
 The concrete QSHop API class implements the needed endpoints to process the requests.
 
-For mapping of the URI to suitable API requests (endpoint, verb, arguments), there is .htaccess file for Apache to do
-proper URL rewriting.
+For mapping of the URI to suitable API requests (endpoint, verb, arguments), there are rewrite rules written for Apache to do
+proper URL rewriting. All API requests are forwarded to an API controller api/api.php, which routes the requests to concrete REST
+API handler class.
