@@ -25,7 +25,6 @@
      * @return true if API KEY valid, false otherwise 
      */
     function auth($userid, $mysqli){
-        $verify = false;
         $headers = apache_request_headers();
         if (isset($headers["Authorization"])){
             $key = base64_decode($headers["Authorization"]);

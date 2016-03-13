@@ -5,9 +5,7 @@
          * amount in stock and releases reservation status in stock.
          * Updates products status in users basket as purchased for further order processing. 
          */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+        $mysqli = connect_db::init();
         
         // 1 Init parameters
         $myArray = array('');

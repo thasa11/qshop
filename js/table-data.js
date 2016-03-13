@@ -22,7 +22,7 @@ var APIKEY = 1234;
 $(document).ready(function(){
     // All doc ready code is in IIFE wrapper
 });
-// Get product data ajax functioin
+// Get product data ajax function
 function getCatalogData(command,startID,limit,filter,DBPage,vm, selectrow) {
     if (typeof selectrow == "undefined") selectrow = true;
     // Remove highlight classes
@@ -57,9 +57,8 @@ function getCatalogData(command,startID,limit,filter,DBPage,vm, selectrow) {
             success: function( resp ){
                var info = resp.pop();
                var lkm = info.lkm;
-               var info = info.info;
                var $response = $('#response');
-               $response.html(info);
+               $response.html(info.info?info.info:'');
                data.elements = resp;
                data.elements.forEach(function(entry) {
                   entry.id = parseInt(entry.id);

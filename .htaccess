@@ -2,8 +2,16 @@
 Allow from all
 </Limit>
 RewriteEngine on
-RewriteBase /
+RewriteBase /qvantel
+
+
+# rewrite everything starting with api or /api to api/api.php
+RewriteRule ^/?api/(.*)/?$ api/api.php?apirequest=$1 [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^(.*)$ qvantel/index.php?request=$1 [QSA,NC,L]
+# else if not file or dir redirect to index.php. does not work for extra slashes eg qvantel/eee/ggg
+#RewriteRule ^(.*)$ index.php?req=$1 [QSA,L]
+#RewriteRule ^(.*)/?(.*)/$ index.php?req=$1 [QSA,L]
+#RewriteRule ^(css|js|img)/(.*)?$ /$1/$2 [L,QSA,R=301]
+# base definition in html header solved the problem
+RewriteRule ^(.*)$ index.php [QSA,L]

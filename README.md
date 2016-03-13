@@ -23,5 +23,9 @@ are updated.
 QSHop API customers are handed the API documentation which describes available resources, actions, and descriptors.
 API key is demanded in the cross-site server requests.
 
-I Tried to make the API RESTful, but I found out I do not know how to configure Apache rewrite rules so that
-operation is well-defined. Also, I noted that I do not know the principles of REST API design well enough.
+There is now an abstract API class that implements RESTful API, that uses appropriate HTTP methods.
+CORS requests are allowed, and site using this API must have an API key tied to the domain name.
+The concrete QSHop API class implements the needed endpoints to process the requests.
+
+For mapping of the URI to suitable API requests (endpoint, verb, arguments), there is .htaccess file for Apache to do
+proper URL rewriting.

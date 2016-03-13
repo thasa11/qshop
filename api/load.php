@@ -3,10 +3,8 @@
          * function load
          * Query product catalog with given filters, page and search string.
          * Returns search result grouped by given pricegroups. 
-         */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+         */         
+        $mysqli = connect_db::init();
 
         $myArray = array();
         $tempArray = array();
@@ -91,6 +89,6 @@
         header('Content-Type: application/json');
         echo $_REQUEST['qshopCallback'] . '(' . json_encode($myArray) . ')';
     
-        $result->close();
+        //$result->close();
         $mysqli->close();
 ?>

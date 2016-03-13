@@ -3,9 +3,7 @@
          * function addcart
          * Adds product to users shopping cart.
          */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+        $mysqli = connect_db::init();
 
         $myArray = array();
         

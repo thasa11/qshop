@@ -3,10 +3,8 @@
          * function loadcart
          * Query shopping cart with given filters, page and search string.
          * Returns search result grouped by given pricegroups. 
-         */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+         */         
+        $mysqli = connect_db::init();
 
         $myArray = array();
         $tempArray = array();

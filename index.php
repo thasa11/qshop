@@ -1,22 +1,9 @@
-﻿<?php
-require_once 'api/API.class.php';
-// Requests from the same server don't have a HTTP_ORIGIN header
-if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
-    $_SERVER['HTTP_ORIGIN'] = $_SERVER['SERVER_NAME'];
-}
-// Process request
-if(isset($_REQUEST['request'])){
-        $API = new QShopAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN']);
-        echo $API->processAPI();
-}
-// phpinfo();
-header('Content-Type: text/html');
-?>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <base href="//127.0.0.1/qvantel/" />
     <title>QShop API Demo</title>
     <link rel="stylesheet" href="css/qshop.css" type="text/css" />
     <link rel="stylesheet" href="css/common.css" />

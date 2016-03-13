@@ -4,9 +4,7 @@
          * Updates users cart with new amount of product.
          * Updates stock reserved status with new reserved amount.
          */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+        $mysqli = connect_db::init();
 
         $myArray = array();
         

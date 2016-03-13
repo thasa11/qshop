@@ -633,7 +633,7 @@ $(function () {
         var t = event.target.id;
         if (t!="update" || $(this).valid() == false) return false;
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: 'api/update.php'+'?qshopCallback=?',
             dataType: 'jsonp',
             jsonp: 'qshopCallback',
@@ -661,7 +661,7 @@ $(function () {
         if (t!="new" || $(this).valid() == false) return false;
         $.ajax({
             type: "POST",
-            url: 'api/new.php'+'?qshopCallback=?',
+            url: 'api/addproduct.php'+'?qshopCallback=?',
             dataType: 'jsonp',
             jsonp: 'qshopCallback',
             data: $(this).serialize(),
@@ -685,7 +685,7 @@ $(function () {
         var t = event.target.id;
         if (t!="remove" || $(this).valid() == false) return false;
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: 'api/remove.php'+'?qshopCallback=?',
             dataType: 'jsonp',
             jsonp: 'qshopCallback',
@@ -740,7 +740,7 @@ $(function () {
         var t = event.target.id;
         if (t!="update" || $(this).valid() == false) return false;
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: 'api/updatecart.php'+'?qshopCallback=?',
             dataType: 'jsonp',
             jsonp: 'qshopCallback',
@@ -767,7 +767,7 @@ $(function () {
         var t = event.target.id;
         if (t!="remove" || $(this).valid() == false) return false;
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: 'api/removecart.php'+'?qshopCallback=?',
             dataType: 'jsonp',
             jsonp: 'qshopCallback',
@@ -825,22 +825,26 @@ $(function () {
            descr: "required",
            price: {
               required: true,
-              number: true
+              number: true,
+              min: 0.00
            },
            amount: {
               required: true,
-              number: true
+              number: true,
+              min: 0
            },
            messages: {
               name: "<span>Tuotenimi puuttuu!</span>",
               descr: "<span>Tuotekuvaus puuttuu!</span>",
               price: {
                  required: "<span>Hinta puuttuu!</span>",
-                 number: "<span>Hinnan on oltava numeerinen!</span>"
+                 number: "<span>Hinnan on oltava numeerinen!</span>",
+                 min: "<span>Hinnan on oltava positiivinen!</span>"
               },
               amount: {
                  required: "<span>Määrä puuttuu!</span>",
-                 number: "<span>Määrän on oltava numeerinen!</span>"
+                 number: "<span>Määrän on oltava numeerinen!</span>",
+                 min: "<span>Määrän on oltava positiivinen!</span>"
               },
           }
         }
@@ -853,22 +857,26 @@ $(function () {
            descr: "required",
            price: {
               required: true,
-              number: true
+              number: true,
+              min: 0.00
            },
            amount: {
               required: true,
-              number: true
+              number: true,
+              min: 0
            },
            messages: {
               name: "<span>Tuotenimi puuttuu!</span>",
               descr: "<span>Tuotekuvaus puuttuu!</span>",
               price: {
                  required: "<span>Hinta puuttuu!</span>",
-                 number: "<span>Hinnan on oltava numeerinen!</span>"
+                 number: "<span>Hinnan on oltava numeerinen!</span>",
+                 min: "<span>Hinnan on oltava positiivinen!</span>"
               },
               amount: {
                  required: "<span>Tilattava määrä puuttuu!</span>",
-                 number: "<span>Tilattavan määrän on oltava numeerinen!</span>"
+                 number: "<span>Tilattavan määrän on oltava numeerinen!</span>",
+                 min: "<span>Määrän on oltava positiivinen!</span>"
               },
            }
         }

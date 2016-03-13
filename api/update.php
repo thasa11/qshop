@@ -4,9 +4,7 @@
          * Updates product in product catalog with given values.
          * Updates stock amount (or inserts new stock row if product not existed)
          */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+        $mysqli = connect_db::init();
 
         $myArray = array();
         

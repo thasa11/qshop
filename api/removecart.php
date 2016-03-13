@@ -4,9 +4,7 @@
          * Removes product from users shopping cart.
          * Releases reserved amount back to stock.
          */
-        # connect to db and authenticate api
-        include 'db/mysqli.connect.php';
-        include 'db/authenticate_api.php';
+        $mysqli = connect_db::init();
 
         $myArray = array();
         $count = 0;
