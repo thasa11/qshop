@@ -18,7 +18,7 @@ by various product properties (amount, price, name, etc). Products are categoriz
 sorted according to pricing categories. Products share a common stock, and basket reservations are shown as reserved amounts.
 
 The application has 2 responsive views, that also communicate with each other, e.g. if product is added to cart, both the cart and catalog views
-are updated.
+are updated. MVVM pattern is represented by Model (data), View (html, css), and viewmodels (models of the 2 views).
 
 QSHop API customers are handed the API documentation which describes available resources, actions, and descriptors.
 API key is demanded in the cross-site server requests. API key can be tied to the domain name to make them as a pair.

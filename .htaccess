@@ -14,4 +14,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 #RewriteRule ^(.*)/?(.*)/$ index.php?req=$1 [QSA,L]
 #RewriteRule ^(css|js|img)/(.*)?$ /$1/$2 [L,QSA,R=301]
 # base definition in html header solved the problem
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^(.*)$ index.html [QSA,L]
