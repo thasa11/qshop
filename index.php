@@ -13,7 +13,7 @@
     <div id="schedulePane" class="ui-widget-content">
     <div id="glow">
     <div id="navigation">
-        <h2>QShop Product Catalog</h2>
+        <h2>QShop Product Catalog API v.<span id="apiversion"></span></h2>
     </div>
     <div id="catalog">
         <div id="content">

@@ -15,8 +15,9 @@
         $count = 0;
         $saldo = 0;
 
-        // 2 Check product availability
-        $query="SELECT amount - reserved as saldo FROM stock WHERE productid = $id;";
+        // 2 Check product availability -take own cart into account
+        $query="SELECT (amount + pcs) - reserved as saldo FROM stock 
+        LEFT JOIN basket ON basket.pid = stock.productid WHERE productid = $id;";
         $result=$mysqli->query($query);
         $row = $result->fetch_object();
         $saldo = $row->saldo;

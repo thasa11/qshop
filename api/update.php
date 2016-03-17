@@ -9,9 +9,9 @@
         $myArray = array();
         
         // 1 Get parameters
-        $descr = $_REQUEST['descr'];
+        $descr = $mysqli->real_escape_string(strip_tags($_REQUEST['descr']));
         $price = $_REQUEST['price'];
-        $name = $_REQUEST['name'];
+        $name = $mysqli->real_escape_string(strip_tags($_REQUEST['name']));
         $amount = $_REQUEST['amount'];
         $id = $_REQUEST['productid'];
         $reserved = 0;

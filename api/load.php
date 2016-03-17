@@ -83,6 +83,7 @@
         
         // 5 Finally add total amount of all rows
         $tempArray2['lkm']=$total;
+        $tempArray2['apiversion'] = $_REQUEST['apiversion'];
         array_push($myArray, $tempArray2);
         
         // 6 Json encode -- allow cross site script loading content

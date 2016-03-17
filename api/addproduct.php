@@ -9,9 +9,9 @@
         $myArray = array();
         
         // 1 Get parameters
-        $descr = $_REQUEST['descr'];
+        $descr = strip_tags($_REQUEST['descr']);
         $price = $_REQUEST['price'];
-        $name = $_REQUEST['name'];
+        $name = strip_tags($_REQUEST['name']);
         $amount = $_REQUEST['amount'];
         $reserved = 0;
         

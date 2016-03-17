@@ -37,6 +37,11 @@ abstract class API
      * Stores the input of the PUT request
      */
     protected $file = Null;
+    
+    /**
+     * API version
+     */
+    protected $version = '1.0'; 
 
     /**
      * Constructor: __construct
@@ -65,7 +70,10 @@ abstract class API
                 throw new Exception("Unexpected Header");
             }
         }
-
+        // Set API version
+        $_REQUEST['apiversion'] = $this->version;
+        
+        // Detect and handle HTTP method
         switch($this->method) {
         case 'DELETE':
             $this->request = $this->_cleanInputs($_GET);

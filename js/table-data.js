@@ -57,6 +57,7 @@ function getCatalogData(command,startID,limit,filter,DBPage,vm, selectrow) {
             success: function( resp ){
                var info = resp.pop();
                var lkm = info.lkm;
+               $("#apiversion").text(info.apiversion);
                var $response = $('#response');
                $response.html(info.info?info.info:'');
                data.elements = resp;
